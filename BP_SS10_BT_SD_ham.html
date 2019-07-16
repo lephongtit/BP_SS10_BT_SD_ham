@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-radius: 10px;
+            background-color: #f2f2f2;
+            padding: 20px;
+            width: 80%;
+
+        }
+        th{
+            text-align: right;
+            padding: 8px;
+            font-weight: bold;
+        }
+
+        td{
+            width: 80%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            background: burlywood;
+        }
+        button{
+            color: white;
+            width: 60px;
+            background-color: dimgrey;
+        }
+
+    </style>
+</head>
+<body>
+<h1>Add New Product</h1>
+<input id="add" placeholder="New Product">
+<button type="button" onclick="more(document.getElementById('add').value)">Add</button>
+<p id="show"></p>
+    <script>
+         let sanpham= ["iphone6","iphone6 plus","iphone7","iphone7 plus","iphone8 plus","iphone X","iphone XS Max"];
+
+         function hien_thi() {
+             let hienthi = "<table>";
+             hienthi += "<th><h2>Display All Product</h2></th>";
+             hienthi += "<tr><td>Thứ tự sản phẩm</td>  <td>Tên sản phẩm</td>         <td>Chỉnh sửa</td>   <td>Xóa sản phẩm</td></tr>";
+             for (let i=0;i<sanpham.length;i++){
+                 let stt=i+1;
+                 hienthi+='<tr><td>'+stt+'</td>'+'<td>' +sanpham[i]+'</td>'+
+                     '<td><button type="button" onclick="sua('+ i +')"> Edit </button></td>' +
+                     '<td><button type="button" onclick="xoa('+ i +')"> Delete </button></td></tr>';
+             }
+             hienthi+='</table>';
+             document.getElementById("show").innerHTML = hienthi;
+         }
+         
+         function more(x) {
+             sanpham.push(x);
+             hien_thi();
+             
+         };
+         function sua(x) {
+             let sua=prompt("Nhập tên muốn sửa: ");
+             sanpham[x]=sua;
+
+             hien_thi();
+         }
+         function xoa(x) {
+             sanpham.splice(x,1);
+             hien_thi()
+
+         }
+         hien_thi();
+    </script>
+</body>
+</html>
